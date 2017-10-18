@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Root",
+    "type": "Meta",
+    "id": "0000000000000",
+    "leaf": false,
+    "children": []
+  },
+  {
+    "name": "Work Space",
+    "type": "Root",
+    "id": "0010010000000",
+    "leaf": false,
+    "parentid": "0000000000000",
+    "children": []
+  },
+  {
+    "name": "My 1st Project",
+    "type": "Project",
+    "id": "0010010000001",
+    "parentid": "0010010000000"
+  },
+  {
+    "name": "My 2nd Project",
+    "type": "Project",
+    "id": "0010010000002",
+    "parentid": "0010010000000"
+  },
+  {
+    "name": "My 1st Folder",
+    "type": "Folder",
+    "id": "0010020000001",
+    "parentid": "0010010000001"
+  },
+  {
+    "name": "My 1st Suite",
+    "type": "Suite",
+    "id": "0010030000001",
+    "parentid": "0010020000001"
+  },
+  {
+    "name": "My 1st Case",
+    "type": "Case",
+    "id": "0010040000001",
+    "parentid": "0010020000001"
+  },
+  {
+    "name": "My 2nd Case",
+    "type": "Case",
+    "id": "0010040000002",
+    "parentid": "0010020000001"
+  },
+  {
+    "name": "My 1st OUT",
+    "type": "OUT",
+    "id": "0010050000001",
+    "parentid": "0010020000001"
+  },
+  {
+    "name": "My 1st Action",
+    "type": "Action",
+    "id": "0010060000001",
+    "parentid": "0010020000001"
+  },
+  {
+    "name": "My 1st Data",
+    "type": "Data",
+    "id": "0010070000001",
+    "parentid": "0010020000001"
+  },
+  {
+    "name": "My 2nd Data",
+    "type": "Data",
+    "id": "0010070000002",
+    "parentid": "0010020000001"
+  }
+]

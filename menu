@@ -1,0 +1,77 @@
+[  {
+    "label": "Tests",
+    "icon": "fa-file-o",
+    "items": [{
+      "label": "New",
+      "icon": "fa-plus",
+      "items": [
+        {"label": "Project"},
+        {"label": "Folder"},
+        {"label": "Suite"},
+        {"label": "Case"},
+        {"label": "OUT"},
+        {"label": "Action"},
+        {"label": "Data"}
+      ]
+    },
+      {"separator":true},
+      {"label": "Terminal", "icon": "fa-terminal"},
+      {"label": "Explore", "icon": "fa-tree"},
+      {"label": "Search", "icon": "fa-search"},
+      {"label": "Debug", "icon": "fa-bug"}
+    ]
+  },
+
+  {
+    "label": "Environments",
+    "icon": "fa-server",
+    "items": [
+      {
+        "label": "Runnings"
+      },
+      {
+        "label": "Search",
+        "icon": "fa-search",
+        "items": [
+          {
+            "label": "Text",
+            "items": [
+              {
+                "label": "Workspace"
+              }
+            ]
+          },
+          {
+            "label": "File"
+          }
+        ]}
+    ]
+  },
+  {
+    "label": "Results",
+    "icon": "fa-list-ul",
+    "items": [
+      {"label": "News", "icon": "fa-puzzle-piece"},
+      {"label": "Archived", "icon": "fa-archive"}
+    ]
+  },
+  {
+    "label": "Administration",
+    "icon": "fa-gear",
+    "items": [
+      {
+        "label": "Edit",
+        "icon": "fa-edit",
+        "items": [
+          {"label": "Settings", "icon": "fa-cogs"},
+          {"label": "Menu", "icon": "fa-list"},
+          {"label": "Forms", "icon": "fa-list-alt"}
+        ]
+      }
+    ]
+  },
+  { "label": "", "icon": "","separator":true},
+  {
+    "label": "About", "icon": "fa-copyright", "routerLink":["/about"]
+  }
+]

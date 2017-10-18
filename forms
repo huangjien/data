@@ -1,0 +1,61 @@
+[  {
+    "name": "Project",
+    "fields": [
+      {"name": "id", "type": "id", "readOnly": false, "validators":[]},
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
+    ]
+  },
+  {
+    "name": "Suite",
+    "fields": [
+      {"name": "id", "type": "id", "readOnly": false, "validators":[]},
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "isRoot", "type": "single", "readOnly": false, "validators":[], "options":[{"label":"Root","value":"Root"},{"label":"Sub","value":"Sub"}]},
+      {"name": "tags", "type": "multi", "readOnly": false, "validators":[],
+        "options":[{"label":"Selenium","value":"Selenium"},{"label":"Facade","value":"Facade"},{"label":"Reusable","value":"Reusable"},{"label":"Disabled","value":"Disabled"}]},
+      {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
+    ]
+  },
+  {
+    "name": "Case",
+    "fields": [
+      {"name": "id", "type": "id", "readOnly": false, "validators":[]},
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
+    ]
+  },
+  {
+    "name": "Folder",
+    "fields": [
+      {"name": "id", "type": "id", "readOnly": false, "validators":[]},
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
+    ]
+  },
+  {
+    "name": "OUT",
+    "fields": [
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
+    ]
+  },
+  {
+    "name": "Action",
+    "fields": [
+      {"name": "id", "type": "id", "readOnly": false, "validators":[]},
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
+    ]
+  },
+  {
+    "name": "Data",
+    "fields": [
+      {"name": "id", "type": "id", "readOnly": false, "validators":[]},
+      {"name": "isOverride", "type": "single", "readOnly": false, "validators":[], "options":[{"label":"Override","value":"Override"},{"label":"Inherit","value":"Inherit"}]},
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "value", "type": "text", "readOnly": false, "validators":["required"]},
+      {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
+    ]
+  }
+]
