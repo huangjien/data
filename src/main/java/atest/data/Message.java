@@ -1,5 +1,7 @@
 package atest.data;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -8,12 +10,12 @@ import java.io.StringWriter;
 
 public class Message {
 
-    JsonObject messageObject = new JsonObject();
+    private final JsonObject messageObject = new JsonObject();
     public Message(){
 
     }
 
-    public static String stackTrace(Exception ex){
+    private static String stackTrace(Exception ex){
         StringWriter errors = new StringWriter();
         ex.printStackTrace(new PrintWriter(errors));
         return errors.toString();
@@ -31,8 +33,24 @@ public class Message {
 
     public Message add(String jsonString){
         JsonParser jsonParser = new JsonParser();
-        return this.add(jsonParser.parse(jsonString).getAsJsonObject());
+        JsonElement jsonElement = jsonParser.parse(jsonString);
+        if(jsonElement.isJsonArray()){
+            JsonArray array = new JsonArray();
+            JsonArray source = jsonElement.getAsJsonArray();
+            for (int i = 0; i < source.size(); i++) {
+                array.add(source.get(i).getAsJsonObject().get("_source"));
+            }
+            this.add(array);
+        } else {
+            this.add(jsonElement.getAsJsonObject());
+        }
+        return this;
 
+    }
+
+    public Message add(JsonArray jsonArray){
+        messageObject.add("_source", jsonArray);
+        return this;
     }
 
     public Message add(JsonObject jsonObject){
@@ -45,6 +63,11 @@ public class Message {
     public Message add(String key, String value){
         this.messageObject.addProperty(key, value);
         return this;
+    }
+
+    public static Message Exception(Exception ex){
+        ex.printStackTrace();
+        return Message.Fail().add("exception", ex.getMessage()).add("stack", Message.stackTrace(ex));
     }
 
     @Override

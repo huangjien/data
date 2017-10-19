@@ -1,6 +1,4 @@
 target/
-!.mvn/wrapper/maven-wrapper.jar
-
 ### STS ###
 .apt_generated
 .classpath
@@ -12,7 +10,6 @@ target/
 ### IntelliJ IDEA ###
 .idea
 *.iws
-*.iml
 *.ipr
 
 ### NetBeans ###
