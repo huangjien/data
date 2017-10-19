@@ -88,7 +88,9 @@ public class EDBService {
     }
 
     public String find(String search_string) throws IOException {
-        Response response = restClient.performRequest("GET", "/atest/data/_search?q=" + search_string, Collections.emptyMap());
+        Response response = restClient.performRequest("GET", "/atest/data/_search?q="
+                + search_string.replace(" ", "%20").replace("+", "%2B"),
+                Collections.emptyMap());
         int code = response.getStatusLine().getStatusCode();
         if (code> REDIRECTION_BOUNDRY || code < SUCCESS_BOUNDRY)
             throw new IOException("Response Code:"+code+"\n"+response.getStatusLine().getReasonPhrase());
@@ -107,12 +109,12 @@ public class EDBService {
         EDBService.getInstance().deleteAll();
         // init root
         String rootString = "{\n" +
-                "    \"name\": \"Work Space\",\n" +
+                "    \"name\": \"Root\",\n" +
                 "    \"type\": \"Meta\",\n" +
-                "    \"id\": \"0010010000000\",\n" +
+                "    \"id\": \"0000000000000\",\n" +
                 "    \"leaf\": false,\n" +
                 "    \"children\": []\n" +
-                "}";
+                "  }";
         String rootID = EDBService.getInstance().importOneItemFromJsonString(rootString, "");
         // init form
         String formString = "{\n" +
@@ -152,10 +154,10 @@ public class EDBService {
             root.remove("id");
             root.addProperty("id", id);
         }
-        if(root.has("parentid")) {
-            root.remove("parentid");
+        if(!root.has("parentid")) {
+            root.addProperty("parentid", parentid);
         }
-        root.addProperty("parentid", parentid);
+
 
 
         EDBService.getInstance().insertOrUpdate(id, root.toString());
@@ -163,8 +165,7 @@ public class EDBService {
     }
 
     public String findMetaData(String dataName) throws IOException {
-        // TODO not implemented yet
-        return null;
+        return find("type:Meta AND name:"+dataName);
     }
 
 
