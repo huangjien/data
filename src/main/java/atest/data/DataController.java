@@ -1,5 +1,6 @@
 package atest.data;
 
+import atest.data.services.EDBService;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 import org.elasticsearch.common.Strings;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-class Controller {
+class DataController {
 
     @RequestMapping( value = "/ping", method = RequestMethod.GET )
     public @ResponseBody String ping(){
@@ -19,6 +20,26 @@ class Controller {
             message.add(key, env.get(key));
         }
         return message.toString();
+    }
+
+    @RequestMapping(value = "/data/update", method = RequestMethod.PUT)
+    public @ResponseBody String update(@RequestBody String requestBody) {
+        try {
+            String jsonString = EDBService.getInstance().insertOrUpdate(requestBody);
+            return queryResult(jsonString);
+        } catch (IOException e) {
+            return Message.Exception(e).toString();
+        }
+    }
+
+    @RequestMapping(value="/data/delete/{id}", method = RequestMethod.DELETE)
+    public @ResponseBody String delete(@PathVariable String id){
+        try {
+            String jsonString = EDBService.getInstance().delete(id);
+            return queryResult(jsonString);
+        } catch (IOException e) {
+            return Message.Exception(e).toString();
+        }
     }
 
     @RequestMapping(value="/data/id/{id}", method = RequestMethod.GET)

@@ -11,7 +11,7 @@ import java.io.StringWriter;
 public class Message {
 
     private final JsonObject messageObject = new JsonObject();
-    public Message(){
+    private Message(){
 
     }
 
@@ -48,12 +48,12 @@ public class Message {
 
     }
 
-    public Message add(JsonArray jsonArray){
+    private Message add(JsonArray jsonArray){
         messageObject.add("_source", jsonArray);
         return this;
     }
 
-    public Message add(JsonObject jsonObject){
+    private Message add(JsonObject jsonObject){
         for(String key : jsonObject.keySet()){
             messageObject.add(key, jsonObject.get(key));
         }

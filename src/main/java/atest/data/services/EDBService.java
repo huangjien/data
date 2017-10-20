@@ -1,4 +1,4 @@
-package atest.data;
+package atest.data.services;
 
 import com.google.gson.*;
 import org.apache.http.Header;
@@ -25,9 +25,8 @@ import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 
 public class EDBService {
 
-    public static final int REDIRECTION_BOUNDRY = 300;
-    public static final int SUCCESS_BOUNDRY = 200;
-    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static final int REDIRECTION_BOUNDRY = 300;
+    private static final int SUCCESS_BOUNDRY = 200;
     private static final JsonParser jsonParser = new JsonParser();
     private static EDBService _instance;
     private final RestClient restClient;
@@ -51,6 +50,7 @@ public class EDBService {
         return _instance;
     }
 
+
     private void deleteAll() throws IOException {
         Response response = restClient.performRequest("POST", "/atest/_delete_by_query", Collections.emptyMap(),
                 new NStringEntity("{\n" +
@@ -63,20 +63,41 @@ public class EDBService {
             throw new IOException("Response Code:"+code+"\n"+response.getStatusLine().getReasonPhrase());
     }
 
-    public void insertOrUpdate(String id, String jsonContent) throws IOException {
-        Response response = restClient.performRequest("PUT", "/atest/data/" + id, Collections.emptyMap(),
-                new NStringEntity(jsonContent, APPLICATION_JSON));
-        int code = response.getStatusLine().getStatusCode();
-        if (code> REDIRECTION_BOUNDRY || code < SUCCESS_BOUNDRY)
-            throw new IOException("Response Code:"+code+"\n"+response.getStatusLine().getReasonPhrase());
+    public String insertOrUpdate(String jsonContent) throws IOException {
+        JsonObject object = jsonParser.parse(jsonContent).getAsJsonObject();
+        return insertOrUpdate(object);
 
     }
 
-    public void delete(String id) throws IOException {
+    private String insertOrUpdate(JsonObject object) throws IOException {
+        String id;
+        if (!object.has("id")){
+            id = UUID.randomUUID().toString();
+            object.addProperty("id", id);
+        }
+        id = object.get("id").getAsString();
+        if (Strings.isNullOrEmpty(id)){
+            id = UUID.randomUUID().toString();
+            object.remove("id");
+            object.addProperty("id", id);
+        }
+        if(!object.has("parentid")) {
+            throw new IOException("Item must contain parentid attribute");
+        }
+        Response response = restClient.performRequest("PUT", "/atest/data/" + id, Collections.emptyMap(),
+                new NStringEntity(object.toString(), APPLICATION_JSON));
+        int code = response.getStatusLine().getStatusCode();
+        if (code> REDIRECTION_BOUNDRY || code < SUCCESS_BOUNDRY)
+            throw new IOException("Response Code:"+code+"\n"+response.getStatusLine().getReasonPhrase());
+        return object.toString();
+    }
+
+    public String delete(String id) throws IOException {
         Response response = restClient.performRequest("DELETE", "/atest/data/" + id, Collections.emptyMap());
         int code = response.getStatusLine().getStatusCode();
         if (code> REDIRECTION_BOUNDRY || code < SUCCESS_BOUNDRY)
             throw new IOException("Response Code:"+code+"\n"+response.getStatusLine().getReasonPhrase());
+        return EntityUtils.toString(response.getEntity());
     }
 
     public String findByID(String id) throws IOException {
@@ -105,7 +126,7 @@ public class EDBService {
         }
     }
 
-    protected void initData() throws IOException {
+    public void initData() throws IOException {
         EDBService.getInstance().deleteAll();
         // init root
         String rootString = "{\n" +
@@ -141,27 +162,16 @@ public class EDBService {
         }
     }
 
-    private String importOneItemFromJsonString(String rootString, String parentid) throws IOException {
-        JsonObject root = jsonParser.parse(rootString).getAsJsonObject();
-        String id;
-        if (!root.has("id")){
-            id = UUID.randomUUID().toString();
-            root.addProperty("id", id);
-        }
-        id = root.get("id").getAsString();
-        if (Strings.isNullOrEmpty(id)){
-            id = UUID.randomUUID().toString();
-            root.remove("id");
-            root.addProperty("id", id);
-        }
-        if(!root.has("parentid")) {
-            root.addProperty("parentid", parentid);
+    private String importOneItemFromJsonString(String objectString, String parentid) throws IOException {
+        JsonObject object = jsonParser.parse(objectString).getAsJsonObject();
+
+        if(!object.has("parentid")) {
+            object.addProperty("parentid", parentid);
         }
 
+        String jsonString  = EDBService.getInstance().insertOrUpdate(object);
+        return jsonParser.parse(jsonString).getAsJsonObject().get("id").getAsString();
 
-
-        EDBService.getInstance().insertOrUpdate(id, root.toString());
-        return id;
     }
 
     public String findMetaData(String dataName) throws IOException {
