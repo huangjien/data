@@ -179,9 +179,4 @@ public class EDBService {
         return find("type:Meta AND name:"+dataName);
     }
 
-
-
-    //insert or update
-    //delete
-    //find
 }
