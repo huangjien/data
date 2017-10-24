@@ -121,6 +121,7 @@ public class EDBService {
     public static void main(String[] args) {
         try {
             EDBService.getInstance().initData();
+            System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();
         }

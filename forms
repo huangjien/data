@@ -12,9 +12,11 @@
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
       {"name": "isRoot", "type": "single", "readOnly": false, "validators":[], "options":[{"label":"Root","value":"Root"},{"label":"Sub","value":"Sub"}]},
+      {"name": "onFailed", "tooltip":"Terminate: Terminate whole test; Stop: Stop current suite; Continue: Mark failed, but continue next step; Ignored: Mark passed even failed;", "type": "single", "readOnly": false, "validators":["required"], "options":[{"label":"Terminate","value":"Terminate"},{"label":"Stop","value":"Stop"},{"label":"Continue","value":"Continue"},{"label":"Ignored","value":"Ignored"}]},
       {"name": "tags", "type": "multi", "readOnly": false, "validators":[],
         "options":[{"label":"Selenium","value":"Selenium"},{"label":"Facade","value":"Facade"},{"label":"Reusable","value":"Reusable"},{"label":"Disabled","value":"Disabled"}]},
-      {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
+      {"name": "description", "type": "editor", "readOnly": false, "validators":[]},
+      {"name": "references", "type": "references", "readOnly": false, "validators":[]}
     ]
   },
   {
@@ -22,6 +24,7 @@
     "fields": [
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "onFailed", "tooltip":"Terminate: Terminate whole test; Stop: Stop current suite; Continue: Mark failed, but continue next step; Ignored: Mark passed even failed;", "type": "single", "readOnly": false, "validators":["required"], "options":[{"label":"Terminate","value":"Terminate"},{"label":"Stop","value":"Stop"},{"label":"Continue","value":"Continue"},{"label":"Ignored","value":"Ignored"}]},
       {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
     ]
   },
@@ -45,6 +48,7 @@
     "fields": [
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "onFailed", "tooltip":"Terminate: Terminate whole test; Stop: Stop current suite; Continue: Mark failed, but continue next step; Ignored: Mark passed even failed;", "type": "single", "readOnly": false, "validators":["required"], "options":[{"label":"Terminate","value":"Terminate"},{"label":"Stop","value":"Stop"},{"label":"Continue","value":"Continue"},{"label":"Ignored","value":"Ignored"}]},
       {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
     ]
   },

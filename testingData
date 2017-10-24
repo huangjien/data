@@ -11,6 +11,7 @@
     "name": "My 1st Project",
     "type": "Project",
     "id": "0010010000001",
+    "references":[{"order":"1", "id":"0010030000001", "disabled":"false"}],
     "parentid": "0010010000000"
   },
   {
@@ -29,6 +30,7 @@
     "name": "My 1st Suite",
     "type": "Suite",
     "id": "0010030000001",
+    "references":[{"order":"1", "id":"0010040000001", "disabled":"false"}, {"order":"2", "id":"0010040000002", "disabled":"false"}],
     "parentid": "0010020000001"
   },
   {
