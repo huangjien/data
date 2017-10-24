@@ -33,7 +33,7 @@ public class DataApplication {
 				registry.addMapping("/**").allowedOrigins(
 						"http://localhost:4200", "http://127.0.0.1:4200", "http://jiens-mbp.mul.ie.ibm.com:4200",
 						"http://jiens-mbp.locals:4200", "http://crystal1024.mulvm.ie.ibm.com:4200"
-				);
+				).allowedMethods("GET","PUT","DELETE","POST");
 			}
 		};
 	}

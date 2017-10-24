@@ -26,7 +26,7 @@ class DataController {
     public @ResponseBody String update(@RequestBody String requestBody) {
         try {
             String jsonString = EDBService.getInstance().insertOrUpdate(requestBody);
-            return queryResult(jsonString);
+            return Message.OK().add(jsonString).toString();
         } catch (IOException e) {
             return Message.Exception(e).toString();
         }
@@ -78,6 +78,7 @@ class DataController {
     }
 
     private String queryResult(String kidString) {
+
         JSONArray jsonArray = JsonPath.read(kidString,"$.hits.hits");
         return Message.OK().add(jsonArray.toJSONString()).toString();
     }
