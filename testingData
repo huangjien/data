@@ -8,14 +8,14 @@
     "children": []
   },
   {
-    "name": "My 1st Project",
+    "name": "Selenium Demo Project",
     "type": "Project",
     "id": "0010010000001",
     "references":[{"order":"1", "id":"0010030000001", "disabled":"false"}],
     "parentid": "0010010000000"
   },
   {
-    "name": "My 2nd Project",
+    "name": "Java Agent Demo Project",
     "type": "Project",
     "id": "0010010000002",
     "parentid": "0010010000000"

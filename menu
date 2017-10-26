@@ -10,7 +10,7 @@
         {"label": "Suite"},
         {"label": "Case"},
         {"label": "OUT"},
-        {"label": "Action"},
+        {"label": "Form"},
         {"label": "Data"}
       ]
     },

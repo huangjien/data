@@ -1,5 +1,5 @@
 [  {
-    "name": "Project",
+    "name": "Project", "type": "Form",
     "fields": [
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
@@ -7,7 +7,16 @@
     ]
   },
   {
-    "name": "Suite",
+    "name": "Form", "type": "Form",
+    "fields": [
+      { "order":"1", "name": "id", "type": "id", "readOnly": false, "validators":[]},
+      { "order":"2", "name": "type", "type": "text", "readOnly": true, "validators":[]},
+      { "order":"3", "name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      { "order":"4", "name": "fields", "type": "references", "readOnly": false, "validators":[]}
+    ]
+  },
+  {
+    "name": "Suite", "type": "Form",
     "fields": [
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
@@ -20,7 +29,7 @@
     ]
   },
   {
-    "name": "Case",
+    "name": "Case", "type": "Form",
     "fields": [
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
@@ -29,7 +38,7 @@
     ]
   },
   {
-    "name": "Folder",
+    "name": "Folder", "type": "Form",
     "fields": [
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
@@ -37,14 +46,14 @@
     ]
   },
   {
-    "name": "OUT",
+    "name": "OUT", "type": "Form",
     "fields": [
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
       {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
     ]
   },
   {
-    "name": "Action",
+    "name": "Action", "type": "Form",
     "fields": [
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
@@ -53,7 +62,7 @@
     ]
   },
   {
-    "name": "Data",
+    "name": "Data", "type": "Form",
     "fields": [
       {"name": "id", "type": "id", "readOnly": false, "validators":[]},
       {"name": "isOverride", "type": "single", "readOnly": false, "validators":[], "options":[{"label":"Override","value":"Override"},{"label":"Inherit","value":"Inherit"}]},
