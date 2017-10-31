@@ -36,7 +36,7 @@ class DataController {
     public @ResponseBody String delete(@PathVariable String id){
         try {
             String jsonString = EDBService.getInstance().delete(id);
-            return queryResult(jsonString);
+            return Message.OK().add(jsonString).toString();
         } catch (IOException e) {
             return Message.Exception(e).toString();
         }
