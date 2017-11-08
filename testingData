@@ -11,7 +11,7 @@
     "name": "Selenium Demo Project",
     "type": "Project",
     "id": "0010010000001",
-    "references":[{"order":"1", "id":"0010030000001", "disabled":"false"}],
+    "references":[{"order":"1", "id":"0010030000001", "disabled":false}],
     "parentid": "0010010000000"
   },
   {
@@ -21,50 +21,65 @@
     "parentid": "0010010000000"
   },
   {
-    "name": "My 1st Folder",
+    "name": "Project Folder",
     "type": "Folder",
     "id": "0010020000001",
     "parentid": "0010010000001"
   },
   {
-    "name": "My 1st Suite",
+    "name": "Selenium Suite",
     "type": "Suite",
     "id": "0010030000001",
-    "references":[{"order":"1", "id":"0010040000001", "disabled":"false"}, {"order":"2", "id":"0010040000002", "disabled":"false"}],
-    "parentid": "0010020000001"
+    "references": [
+      {
+        "order": "1",
+        "id": "0010040000001",
+        "disabled": false
+      },
+      {
+        "order": "2",
+        "id": "0010040000002",
+        "disabled": false
+      }
+    ],
+    "parentid": "0010020000001",
+    "isRoot": "Root",
+    "onFailed": "Terminate",
+    "tags": [
+      "Selenium"
+    ]
   },
   {
-    "name": "My 1st Case",
+    "name": "Login",
     "type": "Case",
     "id": "0010040000001",
-    "parentid": "0010020000001"
+    "parentid": "0010020000001",
+    "onFailed": "Stop",
+    "description": "This is the Login Test Case, require username and password. When it failed, we should stop the testing."
   },
   {
-    "name": "My 2nd Case",
+    "name": "Logout",
     "type": "Case",
     "id": "0010040000002",
-    "parentid": "0010020000001"
+    "parentid": "0010020000001",
+    "onFailed": "Continue",
+    "description": "This is the logout test case. Usually, it should not fail, unless we  cannot find the logout button; in this case, we mark it fail, but still can go on testing."
   },
   {
-    "name": "My 1st OUT",
+    "name": "Login Screen",
     "type": "OUT",
     "id": "0010050000001",
-    "parentid": "0010020000001"
+    "parentid": "0010020000001",
+    "description": "This is the OUT represent the Login Screen.\nContains: username, password, login button"
   },
   {
-    "name": "My 1st Action",
-    "type": "Action",
-    "id": "0010060000001",
-    "parentid": "0010020000001"
-  },
-  {
-    "name": "My 1st Data",
+    "name": "User Info: test",
     "type": "Data",
     "id": "0010070000001",
     "parentid": "0010020000001"
   },
   {
-    "name": "My 2nd Data",
+    "name": "User Info: hcrcaseworker",
     "type": "Data",
     "id": "0010070000002",
     "parentid": "0010020000001"

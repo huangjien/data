@@ -6,7 +6,7 @@ import com.google.gson.JsonParser;
 
 public abstract class Instance {
     JsonObject basicInformation = new JsonObject();
-    JsonParser jsonParser = new JsonParser();
+    static JsonParser jsonParser = new JsonParser();
 
     public String getId() {
         return id;
@@ -33,5 +33,9 @@ public abstract class Instance {
         return this.basicInformation.toString();
     }
 
+    @Override
+    public String toString() {
+        return this.basicInformation.toString();
+    }
 
 }

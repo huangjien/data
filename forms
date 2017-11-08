@@ -48,7 +48,7 @@
   {
     "name": "OUT", "type": "Form",
     "fields": [
-      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3", "variablename"]},
       {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
     ]
   },
@@ -64,9 +64,9 @@
   {
     "name": "Data", "type": "Form",
     "fields": [
-      {"name": "id", "type": "id", "readOnly": false, "validators":[]},
+      {"name": "id", "type": "id", "readOnly": false, "validators":["required"]},
       {"name": "isOverride", "type": "single", "readOnly": false, "validators":[], "options":[{"label":"Override","value":"Override"},{"label":"Inherit","value":"Inherit"}]},
-      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3"]},
+      {"name": "name", "type": "text", "readOnly": false, "validators":["required", "minlength=3", "variablename"]},
       {"name": "value", "type": "text", "readOnly": false, "validators":["required"]},
       {"name": "description", "type": "editor", "readOnly": false, "validators":["required"]}
     ]

@@ -16,6 +16,17 @@ public class AgentController {
             return Message.Exception(e).toString();
         }
     }
+
+    @RequestMapping( value = "/agent/list", method = RequestMethod.GET )
+    public @ResponseBody
+    String list(){
+        try {
+            String jsonString = AgentService.getInstance().list();
+            return Message.OK().add(jsonString).toString();
+        } catch (Exception e) {
+            return Message.Exception(e).toString();
+        }
+    }
     // request next action
     // submit an action result
 }

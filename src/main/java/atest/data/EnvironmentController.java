@@ -17,6 +17,16 @@ public class EnvironmentController {
         }
     }
     // list environments
+    @RequestMapping( value = "/environment/list", method = RequestMethod.GET )
+    public @ResponseBody
+    String list(){
+        try {
+            String jsonString = EnvironmentService.getInstance().list();
+            return Message.OK().add(jsonString).toString();
+        } catch (Exception e) {
+            return Message.Exception(e).toString();
+        }
+    }
     // update an environment
     // delete an environment
 }
